@@ -1,5 +1,9 @@
 import { motion } from 'framer-motion'
-import heroImage from '../assets/images/deg-rocket-beet.jpg'
+import heroVideo from '../assets/video/deg-hero.mp4'
+import heroPoster from '../assets/images/deg-rocket-beet.jpg'
+
+const prefersReducedMotion =
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 const toppings = [
   { icon: '🍅', from: { x: -160, y: -120 }, settle: { x: -120, y: -40 }, delay: 0.4, rotate: -18 },
@@ -15,12 +19,17 @@ export function Hero() {
       id="top"
       className="relative flex min-h-[100svh] items-end overflow-hidden bg-deg-black pt-24"
     >
-      <img
-        src={heroImage}
-        alt="Wood-fired pizza fresh from the 900° oven"
+      <video
+        autoPlay={!prefersReducedMotion}
+        muted
+        loop
+        playsInline
+        poster={heroPoster}
         className="absolute inset-0 h-full w-full object-cover object-center opacity-70"
         aria-hidden="true"
-      />
+      >
+        <source src={heroVideo} type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-gradient-to-t from-deg-black via-deg-black/60 to-deg-black/20" />
       <div className="absolute inset-0 bg-gradient-to-r from-deg-black/70 via-transparent to-deg-black/40" />
 
